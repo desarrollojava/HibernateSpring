@@ -16,16 +16,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "persona")
 public class Persona {
-    
+
     private int idPersona;
     private String nombres;
     private String apellidos;
     private String direccionDomicilio;
     private Libro libro;
-    
-    
-    
-    
+
     @Id
     @Column(name = "idPersona", unique = true, nullable = false)
     public int getIdPersona() {
@@ -44,7 +41,7 @@ public class Persona {
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
-        
+
     @Column(name = "apellidos", unique = true, nullable = false)
     public String getApellidos() {
         return apellidos;
@@ -53,17 +50,18 @@ public class Persona {
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
-    
+
     @Column(name = "direccionDomicilio", unique = true, nullable = false)
     public String getDireccionDomicilio() {
         return direccionDomicilio;
     }
-    
+
     public void setDireccionDomicilio(String direccionDomicilio) {
         this.direccionDomicilio = direccionDomicilio;
     }
-    
-    @OneToOne
+
+    @OneToOne()
+    @Column(name = "libro", unique = true, nullable = false)
     public Libro getLibro() {
         return libro;
     }
@@ -71,7 +69,5 @@ public class Persona {
     public void setLibro(Libro libro) {
         this.libro = libro;
     }
-    
-    
 
 }
