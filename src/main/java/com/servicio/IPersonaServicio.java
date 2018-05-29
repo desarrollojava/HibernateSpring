@@ -5,6 +5,7 @@
  */
 package com.servicio;
 
+import com.modelo.Libro;
 import com.modelo.Persona;
 import java.util.List;
 

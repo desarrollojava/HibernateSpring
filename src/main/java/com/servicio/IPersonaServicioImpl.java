@@ -6,6 +6,7 @@
 package com.servicio;
 
 import com.dao.IPersonaDao;
+import com.modelo.Libro;
 import com.modelo.Persona;
 import java.util.List;
 import org.apache.commons.logging.Log;

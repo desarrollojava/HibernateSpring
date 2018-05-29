@@ -1,7 +1,9 @@
 
 import com.dao.IPersonaDao;
+import com.modelo.Libro;
 import com.modelo.Persona;
 import com.servicio.IPersonaServicio;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -19,32 +21,38 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/com/configuracion/dataSource-test.xml", "classpath:/com/configuracion/applicationContext.xml"})
 public class TestCrud {
-    
+
     private static Log logger = LogFactory.getLog(TestCrud.class);
-    
+
     @Autowired
     private IPersonaDao iPersonaDao;
-    
+
     @Autowired
     private IPersonaServicio iPersonaServicio;
-    
-    
+
     @Test
     public void Test() {
         try {
-            Persona persona=new Persona();
-            persona.setApellidos("Mora");
-            persona.setNombres("Maria");
-            persona.setDireccionDomicilio("Sangolqui");
+            Libro libro = new Libro();
+            libro.setNombres("Informatica");
+            List<Libro> listaLibro = new ArrayList<>();
+            listaLibro.add(libro);
+
+            Persona persona = new Persona();
+            persona.setApellidos("Pedro");
+            persona.setNombres("Diego");
+            persona.setDireccionDomicilio("Quito");
+            persona.setLibros(listaLibro);
+
             iPersonaServicio.agregarPersona(persona);
-            List<Persona> lista = iPersonaDao.buscarTodo();            
-            for (Persona obj : lista) {
-                logger.info("persona:-->" + obj.getApellidos());
-            }
+//            List<Persona> lista = iPersonaDao.buscarTodo();
+//            for (Persona obj : lista) {
+//                logger.info("persona:-->" + obj.getApellidos());
+//            }
         } catch (Exception ex) {
             logger.error("error:-->" + ex.getMessage());
         }
-        
+
     }
-    
+
 }

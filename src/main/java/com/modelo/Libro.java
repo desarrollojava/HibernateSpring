@@ -8,17 +8,20 @@ package com.modelo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "libro")
 public class Libro {
 
-    private int idLibro;
-    private String nombres;
-
     @Id
     @Column(name = "idLibro", unique = true, nullable = false)
+    private int idLibro;
+    @Column(name = "nombres", unique = true, nullable = false)
+    private String nombres;
+
     public int getIdLibro() {
         return idLibro;
     }
@@ -27,7 +30,6 @@ public class Libro {
         this.idLibro = idLibro;
     }
 
-    @Column(name = "nombres", unique = true, nullable = false)
     public String getNombres() {
         return nombres;
     }
@@ -35,5 +37,9 @@ public class Libro {
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "idPersona")
+    private Persona persona;
 
 }

@@ -5,8 +5,11 @@
  */
 package com.dao;
 
+import com.modelo.Libro;
 import com.modelo.Persona;
 import java.util.List;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class IPersonaDaoImpl implements IPersonaDao {
+    private static Log logger = LogFactory.getLog(IPersonaDaoImpl.class);
 
     private SessionFactory sessionFactory;
 
@@ -29,7 +33,11 @@ public class IPersonaDaoImpl implements IPersonaDao {
 
     @Override
     public void agregarPersona(Persona persona) {
+        try {
         currentSession().saveOrUpdate(persona);
+        } catch (Exception ex) {
+            logger.error(ex.getCause());
+        }
     }
 
     @Override

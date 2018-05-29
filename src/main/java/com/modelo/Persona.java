@@ -5,26 +5,36 @@
  */
 package com.modelo;
 
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.IndexColumn;
 
 @Entity
 @Table(name = "persona")
 public class Persona {
 
-    private int idPersona;
-    private String nombres;
-    private String apellidos;
-    private String direccionDomicilio;
-    private Libro libro;
-
     @Id
     @Column(name = "idPersona", unique = true, nullable = false)
+    private int idPersona;
+    @Column(name = "nombres", unique = true, nullable = false)
+    private String nombres;
+    @Column(name = "apellidos", unique = true, nullable = false)
+    private String apellidos;
+    @Column(name = "direccionDomicilio", unique = true, nullable = false)
+    private String direccionDomicilio;
+    
+    @OneToMany(cascade= CascadeType.ALL)
+    @JoinColumn(name="idPersona")
+    @Column(name="idx")
+    private List<Libro> libros;
+
     public int getIdPersona() {
         return idPersona;
     }
@@ -33,7 +43,6 @@ public class Persona {
         this.idPersona = idPersona;
     }
 
-    @Column(name = "nombres", unique = true, nullable = false)
     public String getNombres() {
         return nombres;
     }
@@ -42,7 +51,6 @@ public class Persona {
         this.nombres = nombres;
     }
 
-    @Column(name = "apellidos", unique = true, nullable = false)
     public String getApellidos() {
         return apellidos;
     }
@@ -51,7 +59,6 @@ public class Persona {
         this.apellidos = apellidos;
     }
 
-    @Column(name = "direccionDomicilio", unique = true, nullable = false)
     public String getDireccionDomicilio() {
         return direccionDomicilio;
     }
@@ -60,14 +67,14 @@ public class Persona {
         this.direccionDomicilio = direccionDomicilio;
     }
 
-    @OneToOne()
-    @Column(name = "libro", unique = true, nullable = false)
-    public Libro getLibro() {
-        return libro;
+    public List<Libro> getLibros() {
+        return libros;
     }
 
-    public void setLibro(Libro libro) {
-        this.libro = libro;
+    public void setLibros(List<Libro> libros) {
+        this.libros = libros;
     }
+
+  
 
 }
