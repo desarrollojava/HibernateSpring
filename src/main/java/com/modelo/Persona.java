@@ -5,6 +5,7 @@
  */
 package com.modelo;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,7 +19,7 @@ import org.hibernate.annotations.IndexColumn;
 
 @Entity
 @Table(name = "persona")
-public class Persona {
+public class Persona implements Serializable {
 
     @Id
     @Column(name = "idPersona", unique = true, nullable = false)
@@ -32,7 +33,7 @@ public class Persona {
     
     @OneToMany(cascade= CascadeType.ALL)
     @JoinColumn(name="idPersona")
-    @Column(name="idx")
+//    @Column(name="idx")
     private List<Libro> libros;
 
     public int getIdPersona() {

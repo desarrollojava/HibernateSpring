@@ -5,6 +5,7 @@
  */
 package com.modelo;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,13 +15,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "libro")
-public class Libro {
+public class Libro implements Serializable {
 
     @Id
     @Column(name = "idLibro", unique = true, nullable = false)
     private int idLibro;
     @Column(name = "nombres", unique = true, nullable = false)
     private String nombres;
+
+    @ManyToOne
+    @JoinColumn(name = "idPersona")
+    private Persona persona;
 
     public int getIdLibro() {
         return idLibro;
@@ -38,8 +43,10 @@ public class Libro {
         this.nombres = nombres;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "idPersona")
-    private Persona persona;
+    public Libro(int idLibro, String nombres, Persona persona) {
+        this.idLibro = idLibro;
+        this.nombres = nombres;
+        this.persona = persona;
+    }
 
 }
