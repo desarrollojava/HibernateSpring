@@ -17,13 +17,14 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 public class IPersonaServicioImpl implements IPersonaServicio {
-    
+
     private static Log LOGGER = LogFactory.getLog(IPersonaServicioImpl.class);
-    
+
     @Autowired
     IPersonaDao iPersonaDao;
-    
+
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
     @Override
     public void agregarPersona(Persona persona) {
@@ -32,37 +33,37 @@ public class IPersonaServicioImpl implements IPersonaServicio {
         } catch (Exception ex) {
             LOGGER.error(ex.getCause());
         }
-        
+
     }
-    
+
     @Override
     public void actualizarPersona(Persona persona) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public void eliminarPersona(Persona persona) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public void buscarPersonaPorId(int idPersona) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public List<Persona> buscarTodo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public int contarPersonasPorNombre(Persona persona) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
     public int contadorPersonas() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

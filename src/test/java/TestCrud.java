@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -31,17 +32,21 @@ public class TestCrud {
     private IPersonaServicio iPersonaServicio;
 
     @Test
+//    @Transactional
     public void Test() {
         try {
-            Libro libro = new Libro();
-            libro.setNombres("Informatica");
+//            Libro libro = new Libro();
+//            libro.setNombres("Informatica");
             List<Libro> listaLibro = new ArrayList<>();
-            listaLibro.add(libro);
+//            listaLibro.add(libro);
 
             Persona persona = new Persona();
+            persona.setIdPersona(1);
             persona.setApellidos("Pedro");
             persona.setNombres("Diego");
             persona.setDireccionDomicilio("Quito");
+            
+            listaLibro.add(new Libro(1, "fisica",persona));
             persona.setLibros(listaLibro);
 
             iPersonaServicio.agregarPersona(persona);
