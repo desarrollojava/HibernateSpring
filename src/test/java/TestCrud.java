@@ -41,12 +41,12 @@ public class TestCrud {
 //            listaLibro.add(libro);
 
             Persona persona = new Persona();
-            persona.setIdPersona(1);
-            persona.setApellidos("Pedro");
-            persona.setNombres("Diego");
-            persona.setDireccionDomicilio("Quito");
+            persona.setIdPersona(2);
+            persona.setApellidos("Pedro1");
+            persona.setNombres("Diego1");
+            persona.setDireccionDomicilio("Quito1");
             
-            listaLibro.add(new Libro(1, "fisica",persona));
+            listaLibro.add(new Libro(2, "fisica1",persona));
             persona.setLibros(listaLibro);
 
             iPersonaServicio.agregarPersona(persona);

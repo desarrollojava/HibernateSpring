@@ -25,7 +25,7 @@ public class IPersonaServicioImpl implements IPersonaServicio {
     @Autowired
     IPersonaDao iPersonaDao;
 
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+    @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
     @Override
     public void agregarPersona(Persona persona) {
         try {
